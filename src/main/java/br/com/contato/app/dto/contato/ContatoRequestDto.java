@@ -1,5 +1,6 @@
 package br.com.contato.app.dto.contato;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -17,9 +18,11 @@ public record ContatoRequestDto(
         @NotBlank(message = "This field cannot be null or blank!")
         String telefone,
 
+        @Schema(hidden = true)
         @NotBlank(message = "This field cannot be null or blank!")
         Character favorito,
 
+        @Schema(hidden = true)
         @NotBlank(message = "This field cannot be null or blank!")
         Character ativo
 ) {

@@ -25,6 +25,9 @@ public class ContatoService {
 
         ContatoEntity contatoNew = contatoMapper.toModel(contatoRequestDto);
 
+        contatoNew.setAtivo('S');
+        contatoNew.setFavorito('N');
+
         contatoRepository.save(contatoNew);
 
         return contatoMapper.toDto(contatoNew);

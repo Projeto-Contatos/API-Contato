@@ -1,7 +1,7 @@
 package br.com.contato.app.controllers;
 
+import br.com.contato.app.dto.contato.ContatoResponseDto;
 import br.com.contato.app.dto.contato.ContatoRequestDto;
-import br.com.contato.app.dto.contato.ContatoUpdateDto;
 import br.com.contato.app.services.ContatoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class ContatoController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<ContatoRequestDto>> getAllContatos() {
+    public ResponseEntity<List<ContatoResponseDto>> getAllContatos() {
         return ResponseEntity.status(HttpStatus.OK).body(contatoService.findAll());
     }
 
@@ -40,8 +40,8 @@ public class ContatoController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ContatoUpdateDto> updateContato(@PathVariable Integer id, @RequestBody ContatoUpdateDto contatoUpdateDto) {
-        ContatoUpdateDto contatoAtualizado = contatoService.updateContato(id, contatoUpdateDto);
+    public ResponseEntity<ContatoRequestDto> updateContato(@PathVariable Integer id, @RequestBody ContatoRequestDto contatoRequestDto) {
+        ContatoRequestDto contatoAtualizado = contatoService.updateContato(id, contatoRequestDto);
         return ResponseEntity.ok(contatoAtualizado);
     }
 }

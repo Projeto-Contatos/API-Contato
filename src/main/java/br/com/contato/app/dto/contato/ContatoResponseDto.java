@@ -5,7 +5,10 @@ import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 
-public record ContatoUpdateDto(
+public record ContatoResponseDto(
+        @NotBlank(message = "This field cannot be null or blank!")
+        Integer id,
+
         @NotBlank(message = "This field cannot be null or blank!")
         String nome,
 
@@ -17,6 +20,15 @@ public record ContatoUpdateDto(
         String celular,
 
         @NotBlank(message = "This field cannot be null or blank!")
-        String telefone
+        String telefone,
+
+        @NotBlank(message = "This field cannot be null or blank!")
+        Character favorito,
+
+        @NotBlank(message = "This field cannot be null or blank!")
+        Character ativo,
+
+        @NotBlank(message = "This field cannot be null or blank!")
+        LocalDateTime cadastro
 ) {
 }

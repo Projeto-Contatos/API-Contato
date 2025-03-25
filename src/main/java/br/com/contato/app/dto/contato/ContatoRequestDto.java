@@ -3,12 +3,7 @@ package br.com.contato.app.dto.contato;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-import java.time.LocalDateTime;
-
 public record ContatoRequestDto(
-        @NotBlank(message = "This field cannot be null or blank!")
-        Integer id,
-
         @NotBlank(message = "This field cannot be null or blank!")
         String nome,
 
@@ -26,9 +21,6 @@ public record ContatoRequestDto(
         Character favorito,
 
         @NotBlank(message = "This field cannot be null or blank!")
-        Character ativo,
-
-        @NotBlank(message = "This field cannot be null or blank!")
-        LocalDateTime cadastro
+        Character ativo
 ) {
 }

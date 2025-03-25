@@ -1,10 +1,9 @@
 package br.com.contato.app.mappers;
 
+import br.com.contato.app.dto.contato.ContatoResponseDto;
 import br.com.contato.app.dto.contato.ContatoRequestDto;
-import br.com.contato.app.dto.contato.ContatoUpdateDto;
 import br.com.contato.app.entity.ContatoEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
@@ -13,9 +12,8 @@ import java.util.List;
 public interface ContatoMapper {
     ContatoEntity toModel(ContatoRequestDto contatoRequestDto);
     ContatoRequestDto toDto(ContatoEntity contatoEntity);
-    ContatoUpdateDto toUpdateDto(ContatoEntity contatoEntity);
 
-    List<ContatoRequestDto> ListContatoDto(List<ContatoEntity> contatos);
+    List<ContatoResponseDto> ListContatoDto(List<ContatoEntity> contatos);
 
-    void updateEntityFromDto(ContatoUpdateDto contatoUpdateDto, @MappingTarget ContatoEntity contatoEntity);
+    void updateEntityFromDto(ContatoRequestDto contatoRequestDto, @MappingTarget ContatoEntity contatoEntity);
 }

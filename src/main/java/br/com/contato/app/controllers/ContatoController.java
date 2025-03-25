@@ -1,6 +1,7 @@
 package br.com.contato.app.controllers;
 
-import br.com.contato.app.dto.ContatoDto;
+import br.com.contato.app.dto.contato.ContatoRequestDto;
+import br.com.contato.app.dto.contato.ContatoUpdateDto;
 import br.com.contato.app.services.ContatoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,12 @@ public class ContatoController {
     private final ContatoService contatoService;
 
     @PostMapping("/create")
-    public ResponseEntity<ContatoDto> saveContato(@RequestBody @Valid ContatoDto contatoDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(contatoService.createContato(contatoDto));
+    public ResponseEntity<ContatoRequestDto> saveContato(@RequestBody @Valid ContatoRequestDto contatoRequestDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(contatoService.createContato(contatoRequestDto));
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<ContatoDto>> getAllContatos() {
+    public ResponseEntity<List<ContatoRequestDto>> getAllContatos() {
         return ResponseEntity.status(HttpStatus.OK).body(contatoService.findAll());
     }
 
@@ -39,8 +40,8 @@ public class ContatoController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ContatoDto> updateContato(@PathVariable Integer id, @RequestBody ContatoDto contatoDto) {
-        ContatoDto contatoAtualizado = contatoService.updateContato(id, contatoDto);
+    public ResponseEntity<ContatoUpdateDto> updateContato(@PathVariable Integer id, @RequestBody ContatoUpdateDto contatoUpdateDto) {
+        ContatoUpdateDto contatoAtualizado = contatoService.updateContato(id, contatoUpdateDto);
         return ResponseEntity.ok(contatoAtualizado);
     }
 }

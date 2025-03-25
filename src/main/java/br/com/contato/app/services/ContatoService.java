@@ -1,6 +1,7 @@
 package br.com.contato.app.services;
 
-import br.com.contato.app.dto.ContatoDto;
+import br.com.contato.app.dto.contato.ContatoRequestDto;
+import br.com.contato.app.dto.contato.ContatoUpdateDto;
 import br.com.contato.app.entity.ContatoEntity;
 import br.com.contato.app.exceptions.CustomException;
 import br.com.contato.app.mappers.ContatoMapper;
@@ -17,14 +18,14 @@ public class ContatoService {
     private final ContatoMapper contatoMapper;
     private final ContatoRepository contatoRepository;
 
-    public ContatoDto createContato(ContatoDto contatoDto) {
-        ContatoEntity contatoNew = contatoMapper.toModel(contatoDto);
+    public ContatoRequestDto createContato(ContatoRequestDto contatoRequestDto) {
+        ContatoEntity contatoNew = contatoMapper.toModel(contatoRequestDto);
         contatoRepository.save(contatoNew);
 
         return contatoMapper.toDto(contatoNew);
     }
 
-    public List<ContatoDto> findAll() {
+    public List<ContatoRequestDto> findAll() {
         List<ContatoEntity> contatos = contatoRepository.findAll();
 
         return contatoMapper.ListContatoDto(contatos);
@@ -54,14 +55,14 @@ public class ContatoService {
         contatoRepository.save(contato);
     }
 
-    public ContatoDto updateContato(Integer id, ContatoDto contatoDto) {
+    public ContatoUpdateDto updateContato(Integer id, ContatoUpdateDto contatoUpdateDto) {
         ContatoEntity contatoExistente = contatoRepository.findById(id).orElseThrow(() -> {
             throw new CustomException("Contato não encontrado", HttpStatus.NOT_FOUND, null);
         });
 
-        contatoMapper.updateEntityFromDto(contatoDto, contatoExistente);
+        contatoMapper.updateEntityFromDto(contatoUpdateDto, contatoExistente);
         contatoRepository.save(contatoExistente);
 
-        return contatoMapper.toDto(contatoExistente);
+        return contatoMapper.toUpdateDto(contatoExistente);
     }
 }

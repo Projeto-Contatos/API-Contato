@@ -12,6 +12,7 @@ import java.util.List;
 public interface ContatoMapper {
     ContatoEntity toModel(ContatoRequestDto contatoRequestDto);
     ContatoRequestDto toDto(ContatoEntity contatoEntity);
+    ContatoResponseDto toResponseDto(ContatoEntity entity);
 
     List<ContatoResponseDto> ListContatoDto(List<ContatoEntity> contatos);
 

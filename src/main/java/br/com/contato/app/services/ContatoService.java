@@ -39,6 +39,14 @@ public class ContatoService {
         return contatoMapper.ListContatoDto(contatos);
     }
 
+    public ContatoResponseDto findByContatoCelular(String celular) {
+        ContatoEntity contato = contatoRepository.findByCelular(celular).orElseThrow(() -> {
+           throw new CustomException("Contato não encontrado", HttpStatus.NOT_FOUND, null);
+        });
+
+        return contatoMapper.toResponseDto(contato);
+    }
+
     public void toggleFavorito(Integer id) {
         ContatoEntity contato = contatoRepository.findById(id).orElseThrow(() -> {
             throw new CustomException("Contato não encontrado", HttpStatus.NOT_FOUND, null);

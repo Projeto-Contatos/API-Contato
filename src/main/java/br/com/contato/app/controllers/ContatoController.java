@@ -27,6 +27,12 @@ public class ContatoController {
         return ResponseEntity.status(HttpStatus.OK).body(contatoService.findAll());
     }
 
+    @GetMapping("/{celular}")
+    public ResponseEntity<ContatoResponseDto> getContatoByCelular(@PathVariable String celular) {
+        ContatoResponseDto contato = contatoService.findByContatoCelular(celular);
+        return ResponseEntity.ok(contato);
+    }
+
     @PatchMapping("/favorito/{id}")
     public ResponseEntity<Void> toggleFavorito(@PathVariable Integer id) {
         contatoService.toggleFavorito(id);

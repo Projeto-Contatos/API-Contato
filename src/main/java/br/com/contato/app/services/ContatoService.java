@@ -19,6 +19,14 @@ public class ContatoService {
     private final ContatoRepository contatoRepository;
 
     public ContatoRequestDto createContato(ContatoRequestDto contatoRequestDto) {
+        if (contatoRequestDto.nome() == null || contatoRequestDto.nome().trim().isEmpty()) {
+            throw new CustomException("O campo nome é obrigatório", HttpStatus.BAD_REQUEST, null);
+        }
+
+        if (contatoRequestDto.celular() == null || contatoRequestDto.celular().trim().isEmpty()) {
+            throw new CustomException("O campo celular é obrigatório", HttpStatus.BAD_REQUEST, null);
+        }
+
         contatoRepository.findByCelular(contatoRequestDto.celular()).ifPresent(contatoEntity -> {
             throw new CustomException("Contato já existe", HttpStatus.BAD_REQUEST, null);
         });
